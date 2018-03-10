@@ -38,6 +38,9 @@ namespace BidDist
                 {
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
+                    options.Conventions.AuthorizePage("/Index");
+                    options.Conventions.AuthorizePage("/About");
+                    options.Conventions.AuthorizePage("/Contact");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development
