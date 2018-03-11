@@ -41,6 +41,7 @@ namespace BidDist
                     options.Conventions.AuthorizePage("/Index");
                     options.Conventions.AuthorizePage("/About");
                     options.Conventions.AuthorizePage("/Contact");
+                    options.Conventions.AuthorizePage("/Vendors/Index");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development

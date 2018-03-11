@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+
+<h2>Index</h2>
+
+
+<form sp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name, keyword, or category:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
