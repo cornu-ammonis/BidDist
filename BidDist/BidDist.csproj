@@ -4,6 +4,10 @@
     <UserSecretsId>aspnet-BidDist-3009D880-0009-4C87-895F-34DE56DE97BA</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20180311185403_Vendors.cs" />
+    <Compile Remove="Data\Migrations\20180311185403_Vendors.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
