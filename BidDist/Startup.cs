@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BidDist.Data;
 using BidDist.Services;
+using BidDist.Models.VendorRepository;
 
 namespace BidDist
 {
@@ -47,6 +48,8 @@ namespace BidDist
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
+
+            services.AddScoped<IVendorRepository, VendorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
