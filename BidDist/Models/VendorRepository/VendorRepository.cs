@@ -15,9 +15,11 @@ namespace BidDist.Models.VendorRepository
             _dbContext = dbContext;
         }
 
-        public IList<Vendor> ListVendorsBySearchString(String searchString)
+        public IList<Vendor> ListVendorsBySearchString(String searchString, ApplicationUser user)
         {
             return _dbContext.Vendors.ToList();
         }
+
+        
     }
 }
