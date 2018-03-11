@@ -13,7 +13,39 @@
             Find by name, keyword, or category:
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-page="./Index">Back to full List</a>
         </p>
     </div>
 </form>
+
+
+<table class="table" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors[0].Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Vendors[0].Email )
+            </th>
+
+           
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var vendor in Model.Vendors)
+        {
+            <tr>
+                <td>
+                    @vendor.Name
+                </td>
+
+                <td>
+                    @vendor.Email
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
