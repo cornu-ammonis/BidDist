@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace BidDist.Models.VendorRepository
 {
-    interface IVendorRepository
+    public interface IVendorRepository
     {
-        IEnumerable<Vendor> ListVendorsBySearchString(String searchString);
+        IList<Vendor> ListVendorsBySearchString(String searchString);
     }
 }
