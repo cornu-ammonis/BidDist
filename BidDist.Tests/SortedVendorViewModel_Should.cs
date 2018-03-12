@@ -32,21 +32,6 @@ namespace BidDist.Tests
             Assert.Equal(4, svvm.SearchPoints);
         }
 
-        private bool IsSortedBySearchPoints(List<VendorViewModel> sortedVendorViewModels)
-        {
-
-            for (int i = 0; i < sortedVendorViewModels.Count - 1; i++)
-            {
-                SortedVendorViewModel sortedVendorViewModelN = (SortedVendorViewModel)sortedVendorViewModels[i];
-                SortedVendorViewModel sortedVendorViewModelNPlusOne = (SortedVendorViewModel)sortedVendorViewModels[i + 1];
-
-                if (sortedVendorViewModelN.SearchPoints < sortedVendorViewModelNPlusOne.SearchPoints)
-                    return false;
-            }
-
-            return true;
-        }
-
         private Vendor generateVendorForViewModel()
         {
             var cities = new List<VendorCity>
