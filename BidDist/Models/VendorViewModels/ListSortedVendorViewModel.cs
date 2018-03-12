@@ -16,7 +16,7 @@ namespace BidDist.Models.VendorViewModels
                 vendorViewModels.Add( new SortedVendorViewModel(vendor, searchString) );
             }
 
-            vendorViewModels.OrderByDescending(vvm => vvm.SearchPoints);
+            vendorViewModels = vendorViewModels.OrderByDescending(vvm => vvm.SearchPoints).ToList();
 
             foreach (SortedVendorViewModel vvm in vendorViewModels)
             {
