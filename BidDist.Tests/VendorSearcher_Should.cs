@@ -35,5 +35,15 @@ namespace BidDist.Tests
 
             Assert.True(validMatch, "vendor searcher search vendor by string should return a valid match according to product");
         }
+
+        [Fact]
+        public void VendorSearcherSearchVendorsByStringReturnsFullMatchForName()
+        {
+            IList<Vendor> testListPartial = VendorSearcher.SearchVendorsByString(vendors, "vendor one abcdefg");
+
+            bool validMatch = testListPartial.Count == 1 && testListPartial[0].Name.ToLower().Equals("vendor one");
+
+            Assert.True(validMatch, "vendor searcher search vendor by string should return a valid full-match according to name");
+        }
     }
 }

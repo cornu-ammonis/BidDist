@@ -16,6 +16,7 @@ namespace BidDist.Models.VendorRepository
                 (from v in vendors
                  where v.KeyWords.Any(k => searchStrings.Any(s => s.ToLower().Contains(k.Keyword.ToLower()) || k.Keyword.ToLower().Contains(s.ToLower())))
                  || v.ProductCategories.Any(pc => searchStrings.Any(s => s.ToLower().Contains(pc.ProductCategory.ToLower()) || pc.ProductCategory.ToLower().Contains(s.ToLower())))
+                 || searchString.ToLower().Contains(v.Name.ToLower())
                  select v
                  );
                  
