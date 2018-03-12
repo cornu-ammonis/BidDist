@@ -1,23 +1,14 @@
 ﻿using BidDist.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace BidDist.Data
+namespace BidDist.Tests
 {
-    public class DbInitializer
+    static class VendorListGenerator
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static List<Vendor> generateVendorsList()
         {
-            context.Database.EnsureCreated();
-
-            // already seeded
-            if (context.Vendors.Any())
-            {
-                return; 
-            }
-
             var cities = new List<VendorCity>
             {
                 new VendorCity {City = "Detroit"}
@@ -51,7 +42,7 @@ namespace BidDist.Data
 
             var keyWordsOne = new List<VendorKeyword>
             {
-                new VendorKeyword { Keyword = "Screws"},
+                new VendorKeyword { Keyword = "Keyword"},
                 new VendorKeyword { Keyword = "Caulk" },
                 new VendorKeyword { Keyword = "Bolts"}
             };
@@ -94,7 +85,7 @@ namespace BidDist.Data
 
             var productsOne = new List<VendorProductCategory>
             {
-                new VendorProductCategory { ProductCategory = "Screws"},
+                new VendorProductCategory { ProductCategory = "Product"},
                 new VendorProductCategory { ProductCategory = "Bolts"},
                 new VendorProductCategory {ProductCategory = "Nails"}
             };
@@ -145,12 +136,13 @@ namespace BidDist.Data
                 new Vendor{Name = "vendor six", Email = "vendor6@demo.com", IsLocal = true,  Cities = citiesSix, KeyWords = keyWordsSix, ProductCategories = productsSix},
             };
 
-            foreach (Vendor v in vendors)
-            {
-                context.Vendors.Add(v);
-            }
+            List<Vendor> list = new List<Vendor>();
 
-            context.SaveChanges();
+            foreach (Vendor v in vendors)
+                list.Add(v);
+
+            return list;
+
         }
     }
 }
