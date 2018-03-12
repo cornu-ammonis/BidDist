@@ -15,6 +15,7 @@ namespace BidDist.Models.VendorViewModels
             SearchPoints = 0;
             AddPointsForProductCategory(searchStrings, vendor.ProductCategories);
             AddPointsForKeywords(searchStrings, vendor.KeyWords);
+            AddPointsForName(searchString, vendor.Name);
         }
 
         private void AddPointsForProductCategory(String [] searchStrings, List<VendorProductCategory> vpcs)
@@ -69,6 +70,15 @@ namespace BidDist.Models.VendorViewModels
                     }
                 }
             }
+        }
+
+        private void AddPointsForName(String searchString, String name)
+        {
+            searchString = searchString.ToLower();
+            name = name.ToLower();
+
+            if (searchString.Contains(name))
+                SearchPoints += 1;
         }
 
     }

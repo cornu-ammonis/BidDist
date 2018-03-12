@@ -32,6 +32,14 @@ namespace BidDist.Tests
             Assert.Equal(4, svvm.SearchPoints);
         }
 
+        [Fact]
+        public void SortedVendorViewModelGeneratesSearchPointsFromName()
+        {
+            SortedVendorViewModel svvm = new SortedVendorViewModel(generateVendorForViewModel(), "vendor one");
+
+            Assert.Equal(1, svvm.SearchPoints);
+        }
+
         private Vendor generateVendorForViewModel()
         {
             var cities = new List<VendorCity>
