@@ -15,7 +15,6 @@ namespace BidDist.Models.VendorViewModels
             SearchPoints = 0;
             AddPointsForProductCategory(searchStrings, vendor.ProductCategories);
             AddPointsForKeywords(searchStrings, vendor.KeyWords);
-            ProductCategories = SearchPoints.ToString();
         }
 
         private void AddPointsForProductCategory(String [] searchStrings, List<VendorProductCategory> vpcs)
