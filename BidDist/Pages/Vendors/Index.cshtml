@@ -22,19 +22,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Vendors[0].Name)
+                @Html.DisplayNameFor(model => model.ListVendorViewModel.VendorViewModels[0].Name)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Vendors[0].Email )
+                @Html.DisplayNameFor(model => model.ListVendorViewModel.VendorViewModels[0].Email)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ListVendorViewModel.VendorViewModels[0].ProductCategories)
             </th>
 
-           
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var vendor in Model.Vendors)
+        @foreach (var vendor in Model.ListVendorViewModel.VendorViewModels)
         {
             <tr>
                 <td>
@@ -43,6 +46,10 @@
 
                 <td>
                     @vendor.Email
+                </td>
+
+                <td>
+                    @vendor.ProductCategories
                 </td>
             </tr>
 

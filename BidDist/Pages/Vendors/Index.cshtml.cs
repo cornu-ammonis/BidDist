@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BidDist.Data;
 using BidDist.Models;
 using BidDist.Models.VendorRepository;
+using BidDist.Models.VendorViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,7 +24,7 @@ namespace BidDist.Pages.Vendors
         }
 
         public string CurrentFilter { get; private set; }
-        public IList<Vendor> Vendors { get; set; } = new List<Vendor>();
+        public ListVendorViewModel ListVendorViewModel { get; set; } 
 
         public async Task OnGetAsync(string searchString)
         {
@@ -32,8 +33,11 @@ namespace BidDist.Pages.Vendors
 
             if (CurrentFilter != null)
             {
-                Vendors = _vendorRepository.ListVendorsBySearchString(CurrentFilter, user);
+                IList<Vendor> vendors = _vendorRepository.ListVendorsBySearchString(CurrentFilter, user);
+                ListVendorViewModel = new ListSortedVendorViewModel(vendors, CurrentFilter);
             }
+            else
+                ListVendorViewModel = new ListSortedVendorViewModel(new List<Vendor>(), "");
         }
     }
 }
