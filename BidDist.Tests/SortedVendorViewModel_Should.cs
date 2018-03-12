@@ -8,10 +8,6 @@ namespace BidDist.Tests
 {
     public class SortedVendorViewModel_Should
     {
-
-   
-
-        
         [Fact]
         public void SortedVendorViewModelGeneratesSearchPointFromKeywords()
         {
@@ -35,6 +31,7 @@ namespace BidDist.Tests
 
             Assert.Equal(4, svvm.SearchPoints);
         }
+
         private bool IsSortedBySearchPoints(List<VendorViewModel> sortedVendorViewModels)
         {
 
@@ -57,16 +54,12 @@ namespace BidDist.Tests
                 new VendorCity {City = "Detroit"}
             };
 
-           
-
             var keyWordsOne = new List<VendorKeyword>
             {
                 new VendorKeyword { Keyword = "Keyword"},
                 new VendorKeyword { Keyword = "And" },
                 new VendorKeyword { Keyword = "Bolts"}
             };
-
-          
 
             var productsOne = new List<VendorProductCategory>
             {
@@ -75,12 +68,9 @@ namespace BidDist.Tests
                 new VendorProductCategory {ProductCategory = "Nails"}
             };
 
-
-
             var vendor = new Vendor { Name = "vendor one", Email = "vendor1@demo.com", IsLocal = true, Cities = cities, KeyWords = keyWordsOne, ProductCategories = productsOne };
 
             return vendor;
-            
         }
     }
 }
