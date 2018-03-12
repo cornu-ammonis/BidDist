@@ -15,7 +15,7 @@ namespace BidDist.Tests
         {
             // constructed with gnog filter as the search string because that wil result in reordering the list of vendors 
             // from its default ordering
-            listSortedVendorViewModel = new ListSortedVendorViewModel(VendorListGenerator.generateVendorsForViewModel(), "gnog filter");
+            listSortedVendorViewModel = new ListSortedVendorViewModel(VendorListGenerator.generateVendorsList(), "gnog filter");
         }
         [Fact]
         public void ListOfSortedVendorViewModelsIsSorted()

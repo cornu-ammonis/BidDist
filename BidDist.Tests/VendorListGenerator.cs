@@ -7,7 +7,7 @@ namespace BidDist.Tests
 {
     static class VendorListGenerator
     {
-        public static List<Vendor> generateVendorsForViewModel()
+        public static List<Vendor> generateVendorsList()
         {
             var cities = new List<VendorCity>
             {
@@ -42,7 +42,7 @@ namespace BidDist.Tests
 
             var keyWordsOne = new List<VendorKeyword>
             {
-                new VendorKeyword { Keyword = "Screws"},
+                new VendorKeyword { Keyword = "Keyword"},
                 new VendorKeyword { Keyword = "Caulk" },
                 new VendorKeyword { Keyword = "Bolts"}
             };
@@ -85,7 +85,7 @@ namespace BidDist.Tests
 
             var productsOne = new List<VendorProductCategory>
             {
-                new VendorProductCategory { ProductCategory = "Screws"},
+                new VendorProductCategory { ProductCategory = "Product"},
                 new VendorProductCategory { ProductCategory = "Bolts"},
                 new VendorProductCategory {ProductCategory = "Nails"}
             };
