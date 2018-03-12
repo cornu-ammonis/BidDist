@@ -74,6 +74,7 @@ namespace BidDist.Data
             {
                 new VendorKeyword { Keyword = "Sustainable"},
                 new VendorKeyword { Keyword = "Filters" },
+                new VendorKeyword { Keyword = "Gnog"},
                 new VendorKeyword { Keyword = "Air Filters"}
             };
 
@@ -100,7 +101,7 @@ namespace BidDist.Data
 
             var productsTwo = new List<VendorProductCategory>
             {
-                new VendorProductCategory { ProductCategory = "Air Filters"},
+                new VendorProductCategory { ProductCategory = "Sprog"},
                 new VendorProductCategory { ProductCategory = "Filters"},
                 new VendorProductCategory {ProductCategory = "Filter Cleaning Service"}
             };
