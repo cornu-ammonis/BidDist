@@ -8,6 +8,6 @@ namespace BidDist.Models.VendorRepository
 {
     public interface IVendorRepository
     {
-        IList<Vendor> ListVendorsBySearchString(String searchString, ApplicationUser user);
+        IList<Vendor> ListVendorsForUserBySearchString(String searchString, ApplicationUser user);
     }
 }

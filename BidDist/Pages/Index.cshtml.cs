@@ -33,7 +33,7 @@ namespace BidDist.Pages
 
             if (CurrentFilter != null)
             {
-                IList<Vendor> vendors = _vendorRepository.ListVendorsBySearchString(CurrentFilter, user);
+                IList<Vendor> vendors = _vendorRepository.ListVendorsForUserBySearchString(CurrentFilter, user);
                 VendorViewModels = new ListSortedVendorViewModel(vendors, CurrentFilter).VendorViewModels;
             }
             else

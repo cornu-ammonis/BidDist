@@ -16,39 +16,20 @@ namespace BidDist.Models.VendorRepository
             _dbContext = dbContext;
         }
 
-        public IList<Vendor> ListVendorsBySearchString(String searchString, ApplicationUser user)
+        public IList<Vendor> ListVendorsForUserBySearchString(String searchString, ApplicationUser user)
         {
-            IList<Vendor> vendors = VendorsToSearchForUser(user);
+            IList<Vendor> vendors;
 
-            String[] searchStrings = searchString.Split(null);
-            Console.WriteLine(searchStrings[0]);
-
-            IEnumerable<Vendor> vendor_query =
-                (from v in _dbContext.Vendors
-                 where v.KeyWords.Any( k => searchStrings.Any(s =>  s.ToLower().Contains( k.Keyword.ToLower() ) || k.Keyword.ToLower().Contains( s.ToLower() )) )
-                 || v.ProductCategories.Any( pc => searchStrings.Any(s => s.ToLower().Contains( pc.ProductCategory.ToLower() ) || pc.ProductCategory.ToLower().Contains( s.ToLower()) ) )
-                 select v
-                 )
-                 .Include<Vendor, List<VendorProductCategory>>( v => v.ProductCategories);
-
-            List<Vendor> resultingVendors = new List<Vendor>();
-            foreach (Vendor v in vendor_query)
-            {
-                resultingVendors.Add(v);
-            }
-
-            return resultingVendors;
-
-        }
-
-
-        private IList<Vendor> VendorsToSearchForUser(ApplicationUser user)
-        {
             if (user.Email == "andrewjones232@gmail.com")
-                return (from v in _dbContext.Vendors select v).Include<Vendor, List<VendorKeyword>>(v => v.KeyWords).ToList();
+                vendors = (from v in _dbContext.Vendors select v).Include<Vendor, List<VendorKeyword>>(v => v.KeyWords)
+                    .Include<Vendor, List<VendorProductCategory>>(v => v.ProductCategories).ToList();
             else
-                return new List<Vendor>();
+                vendors = new List<Vendor>();
+
+            return VendorSearcher.SearchVendorsByString(vendors, searchString);
+
         }
+
         
     }
 }
