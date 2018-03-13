@@ -23,13 +23,14 @@ namespace BidDist.Tests
 
             bool rowsEqualsViewModelCountPlusOne = (csv.Split().Length == vendorViewModels.Count + 1);
 
-            Assert.True(rowsEqualsViewModelCountPlusOne, "vendor csv generator should return a string with number of rows equal to inputted vendors + 1");
+            Assert.Equal(vendorViewModels.Count + 1, csv.Split('\r').Length);
+            //Assert.True(rowsEqualsViewModelCountPlusOne, "vendor csv generator should return a string with number of rows equal to inputted vendors + 1");
         }
 
         [Fact]
         public void VendorCsvGeneratorShouldCreateHeaderRowAndSubsequentRowsOfEqualLength()
         {
-            String[] csv = VendorsCsvGenerator.GenerateVendorCsv(vendorViewModels).Split();
+            String[] csv = VendorsCsvGenerator.GenerateVendorCsv(vendorViewModels).Split('\r');
 
             bool eachRowIsEqualLength = csv.Length >= 2;
 
@@ -39,7 +40,7 @@ namespace BidDist.Tests
                 if (csv[i].Split(',').Length != headerLength)
                     eachRowIsEqualLength = false;
 
-            Assert.True(eachRowIsEqualLength, "Vendor Csv Generator should return a csv where column header and row length is equal");
+            Assert.True(eachRowIsEqualLength, "Vendor Csv Generator should return a csv where column header " + headerLength.ToString() + " and row length is equal");
 
         }
 
