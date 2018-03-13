@@ -19,6 +19,7 @@
 
 @if (Model.VendorViewModels.Count > 0)
 {
+    <a asp-page-handler="Export" download> Download as csv</a>
     <table class="table" >
         <thead>
             <tr>

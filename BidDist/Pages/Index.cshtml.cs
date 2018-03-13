@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BidDist.Data;
 using BidDist.Models;
 using BidDist.Models.VendorRepository;
 using BidDist.Models.VendorViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -38,6 +41,13 @@ namespace BidDist.Pages
             }
             else
                 VendorViewModels = new ListSortedVendorViewModel(new List<Vendor>(), "").VendorViewModels;
+        }
+
+        public async Task<IActionResult> OnGetExportAsync()
+        {
+            String test = "a, b, c, d, e, f, g";
+
+            return File(new MemoryStream(Encoding.UTF8.GetBytes(test)), "text/csv", "test.csv");
         }
     }
 }
