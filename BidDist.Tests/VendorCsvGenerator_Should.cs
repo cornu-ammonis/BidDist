@@ -34,13 +34,25 @@ namespace BidDist.Tests
 
             bool eachRowIsEqualLength = csv.Length >= 2;
 
-            int headerLength = csv[0].Split(',').Length;
+            int headerLength = csv[0].Split(',').Length - 1;
 
             for (int i = 1; i < csv.Length; i++)
-                if (csv[i].Split(',').Length != headerLength)
-                    eachRowIsEqualLength = false;
+            {
+                bool isEscaped = false;
+                int commaCount = 0;
 
-            Assert.True(eachRowIsEqualLength, "Vendor Csv Generator should return a csv where column header " + headerLength.ToString() + " and row length is equal");
+                foreach (char c in csv[i])
+                    if (c.Equals('\"'))
+                        isEscaped = !isEscaped;
+                    else if (c.Equals(',') && !isEscaped)
+                        commaCount += 1;
+
+                if (commaCount != headerLength)
+                    eachRowIsEqualLength = false;
+            }
+
+            Assert.True(eachRowIsEqualLength, "Vendor Csv Generator should return a csv where column header (" + headerLength.ToString() +") and row length is equal \n" + 
+                VendorsCsvGenerator.GenerateVendorCsv(vendorViewModels));
 
         }
 
