@@ -10,7 +10,20 @@ namespace BidDist.Models.VendorRepository
     {
         public static String GenerateVendorCsv(List<VendorViewModel> vendorViewModels)
         {
-            return null;
+            String csv = ColumnHeaders();
+
+            foreach (VendorViewModel vvm in vendorViewModels)
+            {
+                csv += "\r\n";
+                csv += vvm.Name + "," + vvm.Email + "," + vvm.ProductCategories + ",";
+            }
+
+            return csv;
+        }
+
+        private static String ColumnHeaders()
+        {
+            return "Name, Email, Product Categories,";
         }
     }
 }
