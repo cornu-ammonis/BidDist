@@ -15,7 +15,7 @@ namespace BidDist.Models.VendorRepository
             foreach (VendorViewModel vvm in vendorViewModels)
             {
                 csv += "\r\n";
-                csv += vvm.Name + "," + vvm.Email + "," + vvm.ProductCategories + ",";
+                csv += vvm.Name + "," + vvm.Email + "," + "\"" + vvm.ProductCategories + "\"" + ",";
             }
 
             return csv;

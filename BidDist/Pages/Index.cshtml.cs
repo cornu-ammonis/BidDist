@@ -43,11 +43,15 @@ namespace BidDist.Pages
                 VendorViewModels = new ListSortedVendorViewModel(new List<Vendor>(), "").VendorViewModels;
         }
 
-        public async Task<IActionResult> OnGetExportAsync()
+        public async Task<IActionResult> OnGetExportAsync(string searchString)
         {
-            String test = "a, b, c, d, e, f, g";
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            IList<Vendor> vendors = _vendorRepository.ListVendorsForUserBySearchString(searchString, user);
+            VendorViewModels = new ListSortedVendorViewModel(vendors, searchString).VendorViewModels;
 
-            return File(new MemoryStream(Encoding.UTF8.GetBytes(test)), "text/csv", "test.csv");
+            String csv = VendorsCsvGenerator.GenerateVendorCsv(VendorViewModels);
+
+            return File(new MemoryStream(Encoding.UTF8.GetBytes(csv)), "text/csv", "test.csv");
         }
     }
 }
