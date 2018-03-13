@@ -51,7 +51,7 @@ namespace BidDist.Pages
 
             String csv = VendorsCsvGenerator.GenerateVendorCsv(VendorViewModels);
 
-            return File(new MemoryStream(Encoding.UTF8.GetBytes(csv)), "text/csv", "test.csv");
+            return File(new MemoryStream(Encoding.UTF8.GetBytes(csv)), "text/csv", "exported_vendors.csv");
         }
     }
 }
