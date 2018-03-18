@@ -6,3 +6,10 @@
 
 <h2>Admin</h2>
 
+<form method="post" enctype="multipart/form-data">
+    <label asp-for="FileUpload"> Upload Csv</label>
+    <input type="file" asp-for="FileUpload"/>
+    <input type="submit" value="Upload" />
+</form>
+
+<p> @Model.TestString</p>
