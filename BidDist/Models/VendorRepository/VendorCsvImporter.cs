@@ -69,6 +69,20 @@ namespace BidDist.Models.VendorRepository
             return keywordsList;
         }
 
+        private static List<VendorProductCategory> CreateProductCategoryListFromProductDescription(string productDescription)
+        {
+            List<VendorProductCategory> productsList = new List<VendorProductCategory>();
+            string[] productsArray = productDescription.Split(',');
 
+            if (productsArray.Length > 1)
+            {
+                for (int i = 0; i < productsArray.Length; i++)
+                    productsList.Add(new VendorProductCategory { ProductCategory = productsArray[i] });
+            }
+            else
+                productsList.Add(new VendorProductCategory { ProductCategory = productDescription });
+
+            return productsList;
+        }
     }
 }
