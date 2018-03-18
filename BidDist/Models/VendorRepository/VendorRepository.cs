@@ -30,6 +30,24 @@ namespace BidDist.Models.VendorRepository
 
         }
 
+        public int AddListOfVendorsToDatabase (List<Vendor> vendors )
+        {
+            int newAdded = 0;
+
+            foreach (Vendor v in vendors)
+            {
+                // note in the future should implement an equals method for vendor which allows more nuanced detection of duplicates
+                if (! _dbContext.Vendors.Any(dbv => dbv.Name.Equals(v.Name) && dbv.Cities[0].City.Equals(v.Cities[0].City)))
+                {
+                    _dbContext.Vendors.Add(v);
+                    newAdded++;
+                }
+            }
+
+            _dbContext.SaveChanges();
+            return newAdded;
+        }
+
         
     }
 }
