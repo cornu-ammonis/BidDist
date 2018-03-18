@@ -8,6 +8,7 @@
     <Compile Remove="Data\Migrations\20180311185403_Vendors.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
