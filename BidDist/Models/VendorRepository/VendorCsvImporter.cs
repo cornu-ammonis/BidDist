@@ -48,9 +48,12 @@ namespace BidDist.Models.VendorRepository
 
             List<VendorKeyword> keywordsList = CreateVendorKeywordsListFromKeywords(keywords);
 
+            List<VendorProductCategory> productsList = CreateProductCategoryListFromProductDescription(productDescription);
 
-           
-            
+
+            return new Vendor { Name = name, Email = "not given", IsLocal = true, Cities = cities, KeyWords = keywordsList, ProductCategories = productsList };
+
+
         }
 
         private static List<VendorKeyword> CreateVendorKeywordsListFromKeywords (string keywords)
