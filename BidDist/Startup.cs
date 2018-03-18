@@ -34,6 +34,11 @@ namespace BidDist
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Administrator"));
+            });
+
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
@@ -43,6 +48,7 @@ namespace BidDist
                     options.Conventions.AuthorizePage("/About");
                     options.Conventions.AuthorizePage("/Contact");
                     options.Conventions.AuthorizePage("/Vendors/Index");
+                    options.Conventions.AuthorizePage("/Admin", "RequireAdministratorRole");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development
