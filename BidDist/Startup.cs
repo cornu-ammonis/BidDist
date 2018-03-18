@@ -59,7 +59,7 @@ namespace BidDist
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -77,6 +77,50 @@ namespace BidDist
             app.UseAuthentication();
 
             app.UseMvc();
+
+            Task.Run(() => CreateRoles(serviceProvider)).Wait();
+           
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+            if (! (await roleManager.RoleExistsAsync("Administrator")))
+            {
+                IdentityRole newRole = new IdentityRole("Administrator");
+                await roleManager.CreateAsync(newRole);
+            }
+
+            var _user = await UserManager.FindByEmailAsync("andrewjones232@gmail.com");
+
+            // check if the user exists
+            if (_user == null)
+            {
+                //Here you could create the super admin who will maintain the web app
+                var poweruser = new ApplicationUser
+                {
+                    UserName = "Admin",
+                    Email = "andrewjones232@gmail.com",
+                };
+                string adminPassword = "p@$$w0rd";
+
+                var createPowerUser = await UserManager.CreateAsync(poweruser, adminPassword);
+                if (createPowerUser.Succeeded)
+                {
+                    //here we tie the new user to the role
+                    await UserManager.AddToRoleAsync(poweruser, "Administrator");
+
+                }
+            }
+            else
+            {
+                if (!(await UserManager.IsInRoleAsync(_user, "Administrator")))
+                    await UserManager.AddToRoleAsync(_user, "Administrator");
+            }
+
         }
     }
 }
