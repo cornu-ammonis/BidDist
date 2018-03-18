@@ -19,6 +19,7 @@
 
 @if (Model.VendorViewModels.Count > 0)
 {
+    <a asp-page-handler="Export" asp-route-searchString=@Model.CurrentFilter download> Download as csv</a>
     <table class="table" >
         <thead>
             <tr>

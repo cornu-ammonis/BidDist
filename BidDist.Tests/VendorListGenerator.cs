@@ -1,4 +1,5 @@
 ﻿using BidDist.Models;
+using BidDist.Models.VendorViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,12 @@ namespace BidDist.Tests
 {
     static class VendorListGenerator
     {
+
+        public static List<VendorViewModel> generateVendorViewModelList()
+        {
+            return new ListSortedVendorViewModel(generateVendorsList(), "not relevant").VendorViewModels;
+        }
+
         public static List<Vendor> generateVendorsList()
         {
             var cities = new List<VendorCity>
