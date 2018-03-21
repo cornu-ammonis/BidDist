@@ -9,5 +9,7 @@ namespace BidDist.Models.VendorRepository
     public interface IVendorRepository
     {
         IList<Vendor> ListVendorsForUserBySearchString(String searchString, ApplicationUser user);
+
+        int AddVendorListToDatabase(List<Vendor> vendors);
     }
 }
