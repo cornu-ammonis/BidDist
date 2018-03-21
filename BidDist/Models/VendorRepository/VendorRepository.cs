@@ -30,7 +30,7 @@ namespace BidDist.Models.VendorRepository
 
         }
 
-        public int AddListOfVendorsToDatabase (List<Vendor> vendors )
+        public int AddVendorListToDatabase (List<Vendor> vendors )
         {
             int newAdded = 0;
 
